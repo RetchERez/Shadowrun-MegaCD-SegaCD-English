@@ -1,271 +1,195 @@
-SHADOWRUN SEGA CD / MEGA-CD ENGLISH TRANSLATION v1.3
-====================================================
+SHADOWRUN | SEGA CD / MEGA-CD ENGLISH TRANSLATION
+v1.4 FINAL | By RetchERezzed
+========================================================================
+Machine-assisted English translation of the original Japanese Mega-CD game
+6 BPS patches + README only | Clean Japanese 3-track BIN/CUE source required
 
-Release type: Region compatibility release
-Package filename: Shadowrun_SegaCD_English_v13.zip
+CONTENTS
+--------
+1  Release summary
+2  Patch selection and required source
+3  Installation
+4  Optional CHD conversion
+5  Checksums
+6  Verification and limitations
+7  Troubleshooting
+8  Changelog and credits
 
-This package contains BPS patches only. It does not contain the game disc,
-BIOS files, emulator files, CHD files, BIN/CUE files, or CD audio.
-
-TABLE OF CONTENTS
------------------
-1. What Changed in v1.3
-2. Which Patch to Use
-3. Required Source Files
-4. Patching Instructions
-5. Finished Disc Layout
-6. CHD Conversion
-7. Verification Summary
-8. Checksums
-9. Troubleshooting
-10. Changelog
-11. Credits
-
-1. WHAT CHANGED IN v1.3
------------------------
-v1.3 adds separate region-targeted patch files for stock Japanese, U.S., and
-European BIOS setups.
-
-Earlier v1.2/v1.1/v1.0 public patches were Japanese-region releases. They could
-boot on Japanese-region setups, but stock U.S. and European BIOSes could reject
-them and open the Sega CD / Mega-CD CD-player screen. Editing the CUE could not
-fix that, because that symptom is a BIOS/region mismatch, not a track filename
-problem.
-
-v1.3 fixes this by providing separate Track 1 patch targets:
-
-- JP patches for Japanese / NTSC-J Mega-CD BIOS
-- US patches for U.S. / NTSC-U Sega CD BIOS
-- EU patches for European / PAL Mega-CD BIOS
-
-Translation content is based on v1.2. The JP v1.3 targets are byte-identical to
-v1.2 game data. The US and EU targets add region-converted boot compatibility.
-
-2. WHICH PATCH TO USE
----------------------
-Choose one text style and one BIOS region. Apply only one BPS patch.
-
-AllCaps:
-- Shadowrun_SegaCD_English_v13_AllCaps_JP.bps
-- Shadowrun_SegaCD_English_v13_AllCaps_US.bps
-- Shadowrun_SegaCD_English_v13_AllCaps_EU.bps
-
-MixedCase:
-- Shadowrun_SegaCD_English_v13_MixedCase_JP.bps
-- Shadowrun_SegaCD_English_v13_MixedCase_US.bps
-- Shadowrun_SegaCD_English_v13_MixedCase_EU.bps
-
-Use JP if your setup boots Japanese Mega-CD software.
-Use US if your setup uses a stock U.S. Sega CD BIOS.
-Use EU if your setup uses a stock European / PAL Mega-CD BIOS.
-
-AllCaps and MixedCase contain the same translation content. AllCaps keeps more
-of the original all-capital presentation. MixedCase uses sentence-style casing
-where appropriate.
-
-3. REQUIRED SOURCE FILES
-------------------------
-Use the clean Japanese three-track Shadowrun Mega-CD / Sega CD dump:
-
-Shadowrun (Japan).cue
-Shadowrun (Japan) (Track 1).bin
-Shadowrun (Japan) (Track 2).bin
-Shadowrun (Japan) (Track 3).bin
-
-Patch only:
-
-Shadowrun (Japan) (Track 1).bin
-
-Do not patch Track 2, Track 3, the CUE, an ISO, a CHD, a combined BIN, or an
-already patched Track 1.
-
-Required clean Track 1 SHA-256:
-13a8a2c028fd7ef41eddade9a16848b03e7dce2580e80a539ad349e7bc7e7e34
-
-Optional full source-set hashes:
-Shadowrun (Japan).cue
-0abe829f21982c5ca5051713138d7776aa7dbac3a3f43473422d8aafd748407e
-
-Shadowrun (Japan) (Track 2).bin
-bcb4de28a9132f047239873334f9b001012bb657f6d3078f8394b2ec314d733a
-
-Shadowrun (Japan) (Track 3).bin
-bcb4de28a9132f047239873334f9b001012bb657f6d3078f8394b2ec314d733a
-
-4. PATCHING INSTRUCTIONS
-------------------------
-1. Extract this release package.
-2. Choose exactly one BPS patch for your BIOS region and text style.
-3. Apply that BPS patch to the clean Japanese Track 1 BIN only.
-4. Save the patched output as:
-
-   Shadowrun (Japan) (Track 1).bin
-
-5. Put the patched Track 1 beside the untouched Track 2, Track 3, and original
-   CUE.
-6. Load the CUE in your emulator or convert the CUE to CHD.
-
-The BPS filename does not affect patching. The patched Track 1 filename does
-matter if you use the original CUE unchanged.
-
-5. FINISHED DISC LAYOUT
------------------------
-The finished folder should contain:
-
-Shadowrun (Japan).cue                         original, unchanged
-Shadowrun (Japan) (Track 1).bin               patched
-Shadowrun (Japan) (Track 2).bin               original, unchanged
-Shadowrun (Japan) (Track 3).bin               original, unchanged
-
-The CUE should continue to reference these filenames. Do not edit the CUE to fix
-region problems. Use the correct JP, US, or EU BPS patch instead.
-
-6. CHD CONVERSION
------------------
-CHD is optional. If your emulator loads BIN/CUE, CHD is not required.
-
-If you want CHD, convert the CUE, not Track 1 by itself:
-
-chdman createcd -i "Shadowrun (Japan).cue" -o "Shadowrun Sega CD English v1.3.chd"
-chdman verify -i "Shadowrun Sega CD English v1.3.chd"
-
-v1.3 CHD creation and verification were tested with MAME 0.289 chdman for all
-six BPS targets. Each test returned:
-
-Raw SHA1 verification successful
-Overall SHA1 verification successful
-
-7. VERIFICATION SUMMARY
------------------------
-The release package includes proof images in the proof folder.
-
-Controlled runtime tests:
-- Clean Japanese source Track 1
-- Fresh BPS application
-- Original CUE
-- Original Track 2 and Track 3
-- No save states
-- PicoDrive libretro 2.05-ab02114
-- Matching regional BIOS for each regional patch
-
-PicoDrive cold-boot results:
-- AllCaps JP with Japanese BIOS: PASS, title menu reached
-- AllCaps US with U.S. BIOS: PASS, title menu reached
-- AllCaps EU with European BIOS: PASS, title menu reached
-- MixedCase JP with Japanese BIOS: PASS, title menu reached
-- MixedCase US with U.S. BIOS: PASS, title menu reached
-- MixedCase EU with European BIOS: PASS, title menu reached
-
-Additional cross-check:
-- Genesis Plus GX libretro v1.7.4 c2838c7
-- AllCaps JP, US, and EU each reached the title menu with matching BIOS
-
-BPS reapply verification:
-- All six BPS files reapply to the clean Track 1
-- All six reapplied outputs match their expected target Track 1 byte-for-byte
-
-8. CHECKSUMS
-------------
-BPS patch SHA-256:
-
-Shadowrun_SegaCD_English_v13_AllCaps_JP.bps
-6cd2a50d843923ebf0d86b04ef7afe16a62c41e511c7e8120cd2c8dc765bfea7
-
-Shadowrun_SegaCD_English_v13_AllCaps_US.bps
-90cc2850340254920b9a37639f237ac9138ed26ae92613409de1b8e3860455d2
-
-Shadowrun_SegaCD_English_v13_AllCaps_EU.bps
-19f6cc202e66ca6d7262c3565b2fd8379e2c08ca9cc6c570e161fa159075f399
-
-Shadowrun_SegaCD_English_v13_MixedCase_JP.bps
-699ed1b52dcfe2860cf74147bc9abfe553a23644c594d9d2c917c18efa38367f
-
-Shadowrun_SegaCD_English_v13_MixedCase_US.bps
-c9a4904ce7e0c4b2347b9db128a875acd4e6802e41bffbc9a78bb52ea3f796de
-
-Shadowrun_SegaCD_English_v13_MixedCase_EU.bps
-0b2170e41a8afe05c1079b590e35ea11ccc3ace27e196fb2e2de9fe98d074eb7
-
-Expected patched Track 1 SHA-256:
-
-AllCaps JP
-b792c88b8356fbfe3731dedfafbe4903339562c8f78a0a5696ee3ebf21abec95
-
-AllCaps US
-d92a8f1e715f0606128a1e2f934dee9568d4a98d16b6def73932eb775e238597
-
-AllCaps EU
-7a88235e4ce146c9c05149eac982dac52a059392e9bbf296a2f8d9889f0cff99
-
-MixedCase JP
-ac5fef469a8fd13cec8b3e0f568a87c5384348ead9f80e98147fc26bf5f70ae2
-
-MixedCase US
-75d9f56910c76f4062ee0f492680e5eb46c9f0e90a6900d4dc1da4338a82b89e
-
-MixedCase EU
-bb279451f527ef4c4b0b26ec7b16e37bbd55f4147b3038909e5cb86c72f22d5f
-
-Reference CHD SHA-256, if users choose to create CHDs with MAME 0.289 chdman:
-
-AllCaps JP
-1bf624cb34b66fa6c67fc59ad60eddad59fda9e0adfee0981221a3972475aa92
-
-AllCaps US
-eb7b2d0f41a73d1a8e5351f6dfafc778b4cde760f22a604d7aae996a7102ffc9
-
-AllCaps EU
-0fcacb4f24a9ef87ad641e02f9770ea5b35c5ade8c7df5819c2ab2fefa8c1852
-
-MixedCase JP
-b18f78c0d503531b046e84fe9bb5acba80fc3ae358191e2c79325867fbc16df0
-
-MixedCase US
-aa35917770cf8fb686792cb2b2836bfc9db55f15640f3cd9fa1b506b897b020d
-
-MixedCase EU
-c2232c392d79cc4fe69dd92100afd6d4aac75faefcd9ea10bd7bc1655939120f
-
-9. TROUBLESHOOTING
+1. RELEASE SUMMARY
 ------------------
-Problem: The Sega CD / Mega-CD CD-player screen opens.
-Check: You probably used the wrong regional patch for your BIOS. Use JP with a
-Japanese BIOS, US with a U.S. BIOS, and EU with a European BIOS.
+v1.4 Final combines all retained v1.4 translation, speaker/dialogue and
+MixedCase capitalization corrections into one release. Six variants are
+provided: AllCaps and MixedCase for Japanese, U.S. and European BIOS regions.
 
-Problem: Editing the CUE does not make the game boot.
-Check: CUE edits only fix filename/path problems. They do not change the disc
-region. Use the correct regional BPS patch.
+The combined v1.4 Final includes the 12 additional corrected MixedCase rows
+found during the full 5,993-page editorial review. These 15 capitalization
+edits fix Akihabara, Aida, Ehara, Gozm Corp., and incorrect sentence or
+page-continuation capitals. Text positions, controls, row lengths and timing
+are unchanged. The AllCaps patch payloads are unaffected by these corrections.
 
-Problem: No CD audio or missing music.
-Check: Track 2 or Track 3 is missing, renamed, moved, or no longer matches the
-CUE. The patch modifies Track 1 only.
+The earlier v1.4 Nat speaker-perspective fix, Busora/retaliation/street
+terminology and prior comma-continuation revisions remain included.
+This v1.4 Final package supersedes the previous v1.4 distribution.
+Apply a patch ONLY to the original Japanese Track 1, never to another patch.
 
-Problem: The patcher says the source file is wrong.
-Check: You are not using the exact clean Japanese Track 1, or the file was
-already modified. Compare the clean Track 1 SHA-256 above.
+2. PATCH SELECTION AND REQUIRED SOURCE
+-------------------------------------
+Choose ONE capitalization style and ONE matching boot-region BIOS:
+  AllCaps    All-capital dialogue
+  MixedCase  Contextual upper/lowercase dialogue
+  JP         Japanese / NTSC-J Mega-CD BIOS
+  US         U.S. / NTSC-U Sega CD BIOS
+  EU         European / PAL Mega-CD BIOS
 
-Problem: The game shows edge pixels or garbage in ares.
-Check: Use the emulator's overscan crop or hide-overscan option as appropriate
-for the installed ares version. Edge pixels may be outside the intended CRT
-visible area.
+Included patches:
+  Shadowrun_SegaCD_English_v14_AllCaps_JP.bps
+  Shadowrun_SegaCD_English_v14_AllCaps_US.bps
+  Shadowrun_SegaCD_English_v14_AllCaps_EU.bps
+  Shadowrun_SegaCD_English_v14_MixedCase_JP.bps
+  Shadowrun_SegaCD_English_v14_MixedCase_US.bps
+  Shadowrun_SegaCD_English_v14_MixedCase_EU.bps
 
-10. CHANGELOG
--------------
-v1.3
-- Adds separate JP, US, and EU regional BPS patch targets
-- Adds stock U.S. Sega CD BIOS boot support through US patch targets
-- Adds stock European / PAL Mega-CD BIOS boot support through EU patch targets
-- Keeps JP target byte-identical to v1.2 game data
-- Keeps AllCaps and MixedCase text-style options
-- Documents that CUE editing does not fix region mismatch
-- Adds cold-boot proof sheets and validation report
-- Adds CHD verification references for all six patch targets
+All six BPS files require the SAME clean Japanese Track 1 source:
+  Shadowrun (Japan) (Track 1).bin
+  Size: 218,696,016 bytes (raw MODE1/2352 sectors)
+  SHA-256: 13a8a2c028fd7ef41eddade9a16848b03e7dce2580e80a539ad349e7bc7e7e34
 
-v1.2
-- Previous public release baseline used for translation content
-- Japanese-region boot compatibility only unless using a region-free setup
+Do not use a previously patched Track 1, an ISO, a CHD, or a combined BIN.
+The finished disc also needs the original Track 2, Track 3 and CUE.
+No disc tracks, BIOS, emulator, or commercial game resources are included.
 
-11. CREDITS
------------
-Shadowrun is owned by its respective rights holders. This is an unofficial fan
-translation patch. Support official releases.
+3. INSTALLATION
+---------------
+1  Use Flips or another BPS-compatible patcher to apply ONE BPS file
+   to the clean Japanese Track 1 BIN
+2  Save the output to a separate folder under its original name:
+   Shadowrun (Japan) (Track 1).bin
+3  Place the untouched original Track 2, Track 3 and CUE beside it
+4  Open the CUE in a Sega/Mega-CD-capable emulator using the matching BIOS
+
+Required resulting folder:
+  Shadowrun (Japan).cue
+  Shadowrun (Japan) (Track 1).bin  (patched)
+  Shadowrun (Japan) (Track 2).bin  (unchanged audio)
+  Shadowrun (Japan) (Track 3).bin  (unchanged audio)
+
+The CUE must reference these exact filenames. A wrong BIOS region is not
+repaired by renaming a BIN or modifying the CUE.
+Flips: https://github.com/bates64/flips
+
+4. OPTIONAL CHD CONVERSION
+--------------------------
+Use the prepared CUE, never Track 1 by itself:
+  chdman createcd -i "Shadowrun (Japan).cue" -o "Shadowrun_v14.chd"
+  chdman verify -i "Shadowrun_v14.chd"
+
+CHD does not change BIOS region. The three MixedCase JP/US/EU outputs passed MAME 0.289 createcd
+and raw/overall SHA-1 verification. AllCaps CHD checks were previously
+recorded for the same unchanged patch payloads.
+Reference: https://docs.mamedev.org/tools/chdman.html
+
+5. CHECKSUMS
+------------
+BPS file SHA-256 values (these hashes are for the patches, NOT the game):
+  AllCaps_EU     8381ce3e9caa4849562d0e86bfce50b69a3c3fd08600dd6f5e2251a305c271e3
+  AllCaps_JP     9cdfd946d74107987d724b25945727e018b0d76e36cf065070b92d0564c9e21c
+  AllCaps_US     3622f8b7f5558009c080ef7c590bf8dc21345053ee7c0dc159f0830ffcdf540e
+  MixedCase_EU   31af5fa7cfa0f0f6e522efb834813e09ad6865b6867a7dcddcb727a9778911bf
+  MixedCase_JP   5419a94ef19bb39fcf68b14baf7db2ba56be556c08621630580e9e96d6cd3584
+  MixedCase_US   434394d5410b72b904121512248a84dfe4671531b7f106de448eaaca167f3f16
+
+Patched Track 1 SHA-256 values (218,696,016-byte output BIN):
+  AllCaps_EU     03d320aa2d65062a30eafc90bdc1b33300e8273466952fbd9bfe58550b0234e5
+  AllCaps_JP     0e672c205ed28f9b60c1e590b858ea30cecfeff57ae70465524a547f38b5062a
+  AllCaps_US     fb1e01e1a77c6d94e2ec59ca336999ffe060772e052572a0741dd95b56f65da0
+  MixedCase_EU   a8edefaf274e7912af4e73e1d2cb87a67119a7cc82ab47de5c0515efeaeb3cf7
+  MixedCase_JP   bbb89c5f4f2087d9d4037efd958c82c865b1abbb0a7e5dbf0fdb4804148d2db3
+  MixedCase_US   ca9d5ee066fc7ca77944b6d91dd7ea37349f5e9abfe24b891692e92d5cd3189a
+
+6. VERIFICATION AND LIMITATIONS
+------------------------------
+Previously recorded clean-source BPS reapplication: 6/6 PASS
+Current patch-only repack: 6/6 SHA-256, BPS CRC32 + bounds PASS
+Final MixedCase case-only additions: 15 character edits per edition
+Changed raw sectors in MixedCase: 9 per edition, all MODE1 EDC/ECC PASS
+Dialogue page layout/control comparison: all 5,993 pages, zero changes
+AllCaps/MixedCase English text equal when case-normalized: 5,993 pages
+
+Fresh v1.4 FINAL gameplay verification on November 5, 2026:
+  PicoDrive libretro 2.05-733c711; clean disc and actual JP BIOS
+  MixedCase JP: cold boot, interactive Silver Moon and Hajime briefing,
+  Nat video conversation, Shibuya exploration and passerby dialogue,
+  CIRCUS Datanet Slasher Case/Shibuya War, Gyakushimaya location
+  LIVE PASS: Nat wording, representative comma-continuation pages,
+  retaliation sentence, Shibuya side-street wording, Busora sentence
+  PARTIAL: Nat video-call portraits/perspective visibly functional;
+  original forum wrong-speaker screenshot is missing, so the exact
+  original reported attribution cannot be definitively compared
+  JP/US/EU AllCaps and MixedCase: 6/6 fresh cold boot into English
+  prologue with corresponding BIOS and individually hashed patch output
+  Only JP MixedCase was deeply runtime-played for the editorial scenes
+  Independent 6/6 region patch integrity remains as described above
+  Complete campaign and late-game dialogue are NOT certified
+  Separate evidence: Shadowrun_v14_Actual_Gameplay_Proof.zip
+  This evidence ZIP contains untouched raw emulator PNG frames,
+  their SHA-256s, one assembled contact sheet, and a provenance index
+
+Previously recorded PicoDrive libretro 2.05-ab02114 tests:
+  (these tests have NOT been rerun for this minimal repack)
+  6/6 cold boots: 32,430 frames, opening dialogue reached
+  6/6 Nat regressions: 25,920 frames, corrected speech visible
+  No old savestate for cold boot; later Nat route used each new build's
+  own saved checkpoint
+Genesis Plus GX: 6/6 title/menu captures, no post-title certification
+MAME 0.289 chdman: 3/3 newly modified MixedCase CHDs verified
+
+Actual captured gameplay evidence is distributed SEPARATELY from this ZIP:
+  Shadowrun_v14_Actual_Gameplay_Proof.zip (fresh JP runtime frames)
+  Shadowrun_v14_Final_ContactSheet.png (earlier intro + Nat call)
+  Shadowrun_v14_SixEdition_Story_Progression_Proof.png
+  Shadowrun_v14_Yokohama_Hibunro_6Edition_Proof.png
+  Shadowrun_v14_Hibunro_ClosedClub_6Edition_Proof.png
+These are retained PicoDrive capture PROOF SHEETS from earlier tests.
+They are not newly recorded raw frame PNGs from this repack. The
+newest lettering corrections were verified in patch data, not
+reached in live late-game screenshots.
+
+LIMITS: This release is not exhaustive certification
+of the seven-scenario campaign, every branch, combat, Matrix, or ending.
+Kega, ares, and physical hardware are not certified for this release.
+The inaccessible original forum screenshot prevents proving that every
+speaker-attribution complaint concerned the corrected Nat scene.
+
+7. TROUBLESHOOTING
+------------------
+CD player instead of game: ensure selected patch region matches the BIOS
+CUE cannot load: confirm the four exact source filenames in Section 3
+Patch rejected: verify the required clean Track 1 hash in Section 2
+No CD audio: keep both original audio tracks and the three-track CUE
+CHD conversion failure: supply the complete CUE/BIN set to chdman
+Emulator edge garbage: use the appropriate hide/crop overscan setting
+Unexpected text: supply the scene, version, BIOS and actual screenshot
+
+8. CHANGELOG AND CREDITS
+------------------------
+v1.4 Final
+- Corrected the speaker perspective in the initial Nat video-call dialogue
+  without changing the portrait assignment or dialogue-control sequence
+- Integrated all prior v1.4 wording improvements, including Nat, Busora,
+  retaliation phrasing and selected side-street/backstreet terminology
+- Reviewed and corrected 98 MixedCase comma continuations in the earlier pass
+- Retained earlier proper-name and three "God" capitalization fixes
+- Corrected 12 further MixedCase dialogue rows containing 15 case errors
+  across Akihabara, Aida, Ehara, Gozm Corp. and sentence continuations
+- Fixed mid-sentence "Which", "Began", and cross-page "And" casing
+- Preserved AllCaps output unchanged by the 12 additional MixedCase edits
+- Retained Japanese, U.S. and European BIOS region patch selection
+- Preserved text controls, box dimensions, row lengths and display timing
+- Verified patch-specific SHA-256 hashes and target checksums
+- Recorded six regional cold-boot, Nat and title-screen smoke test results
+  and three revised MixedCase CHD verification results
+- Full seven-scenario and ending traversal remains unverified
+
+By RetchERezzed | Unofficial, machine-assisted fan translation
+Shadowrun and related trademarks belong to their respective owners
+Use a lawfully obtained original Japanese disc image
